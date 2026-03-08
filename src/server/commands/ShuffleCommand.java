@@ -1,0 +1,37 @@
+package server.commands;
+
+import common.parser.CommandType;
+import common.parser.Vehicle;
+import server.collection.VehicleRandom;
+import common.parser.ReturnCode;
+
+import java.util.List;
+import java.util.Scanner;
+
+public class ShuffleCommand implements Command{
+    private final VehicleRandom vehicleRandom;
+    private final CommandType type = CommandType.NOARGS;
+
+    public ShuffleCommand(VehicleRandom vehicleRandom){
+        this.vehicleRandom = vehicleRandom;
+    }
+
+    @Override
+    public ReturnCode execute(List<String> args, Vehicle vehicle, Boolean isLaud){
+        if (args.size() != 1) return ReturnCode.FAILED;
+        else{
+            vehicleRandom.shuffle();
+            return ReturnCode.OK;
+        }
+    }
+
+    @Override
+    public String getDescription(){
+        return " перемешать элементы коллекции в случайном порядке";
+    }
+
+    @Override
+    public CommandType getType() {
+        return this.type;
+    }
+}
