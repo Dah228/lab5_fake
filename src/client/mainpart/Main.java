@@ -17,7 +17,7 @@ public class Main {
         VehicleCollection collection = new VehicleCollection();
 
         CommandsList commandsList = new CommandsList();
-        AllCommands allCommands = new AllCommands(commandsList);
+//        AllCommands allCommands = new AllCommands(commandsList);
 
         Invoker invoker = commandsList.getInvoker();
 
@@ -35,7 +35,7 @@ public class Main {
         Executor executor = new Executor(invoker);
 
 
-        executor.Execute(System.in, null);
+        executor.Execute(0,System.in);
 
 
     }

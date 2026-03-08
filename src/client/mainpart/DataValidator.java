@@ -128,7 +128,7 @@ public class DataValidator {
         return readValidatedInput(
                 prompt, isLaud,
                 s -> {
-                    if (!isValidForXml(s)) {
+                    if (!isValidForXml(s) || s.isEmpty()) {
                         throw new IllegalArgumentException("XML-unsafe символы");
                     }
                     return s;

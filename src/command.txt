@@ -1,4 +1,6 @@
 show
+
+
 add
 jjj
 33
@@ -7,6 +9,7 @@ jjj
 4
 plane
 gasoline
+
+
 show
-execute_script src/server.collection/command.txt
 

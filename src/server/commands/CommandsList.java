@@ -39,7 +39,6 @@ public class CommandsList {
         register("add_if_max", new AddIfMax(adder));
         register("update", new UpdateElementID(adder));
         register("help", new HelpCommand(invoker.getCommands()));
-        register("execute_script",null);
     }
 
     private void register(String name, Command command) {
