@@ -22,11 +22,8 @@ public class VehicleAdder {
 
     public void updateElementByID(long id, Vehicle vehicle, Boolean isLaud) {
         if (collection.getVehicleByID(id) != null) {
-            collection.rmEl(collection.getVehicleByID(id));
-            collection.add(vehicle);
-            collection.changeID(id, vehicle.getId());
-            VehicleRandom veeh = new VehicleRandom(collection);
-            veeh.sortByID();
+            vehicle.setId(id);
+            collection.replaceVehicle(id,vehicle);
             if (isLaud) responseSender.send("Элемент обновлен");
         }
     }

@@ -32,7 +32,7 @@ public class Parser {
             try {
                 Element e = (Element) n.item(i);
                 Vehicle v = new Vehicle();
-                v.setId(Long.parseLong(e.getAttribute("id")));
+//                v.setId(Long.parseLong(e.getAttribute("id")));
                 v.setName(e.getElementsByTagName("name").item(0).getTextContent());
                 Element c = (Element) e.getElementsByTagName("coordinates").item(0);
                 v.setCoordinates(Integer.parseInt(c.getElementsByTagName("x").item(0).getTextContent()), Float.parseFloat(c.getElementsByTagName("y").item(0).getTextContent()));

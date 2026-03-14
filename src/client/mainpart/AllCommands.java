@@ -43,10 +43,6 @@ public class AllCommands {
         return commandsList;
     }
 
-    // Getter для Invoker (через CommandsList)
-    public Invoker getInvoker() {
-        return invoker;
-    }
 
     public CommandType getCommandType(String commandName) {
         return commandsInfo.get(commandName);

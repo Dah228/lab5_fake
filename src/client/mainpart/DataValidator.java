@@ -4,19 +4,19 @@ import common.parser.FuelType;
 import common.parser.Vehicle;
 import common.parser.VehicleType;
 import client.printer.ResponseSender;
-import server.collection.VehicleCollection;
+//import server.collection.VehicleCollection;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import static java.util.Collections.max;
+//import static java.util.Collections.max;
 
 public class DataValidator {
     Scanner scanner;
     Boolean isLaud;
     private final ResponseSender responseSender;
-    private final VehicleCollection vehicleCollection = new VehicleCollection();
+//    private final VehicleCollection vehicleCollection = new VehicleCollection();
 
     public DataValidator(Scanner scanner, Boolean isLaud, ResponseSender responseSender) {
         this.scanner = scanner;
@@ -143,10 +143,10 @@ public class DataValidator {
         DataValidator validator = new DataValidator(scanner, isLaud, responseSender);
         Vehicle veh = new Vehicle();
 
-        var Id = vehicleCollection.getAllID();
-        if (!Id.isEmpty()) {
-            veh.setId((long) (max(vehicleCollection.getAllID())) + 1);
-        } else veh.setId(1);
+//        var Id = vehicleCollection.getAllID();
+//        if (!Id.isEmpty()) {
+//            veh.setId((long) (max(vehicleCollection.getAllID())) + 1);
+//        } else veh.setId(1);
 
         String name = validator.readValidName("ВВедите имя: ", isLaud);
         veh.setName(name);
