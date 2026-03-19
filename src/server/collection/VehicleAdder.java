@@ -5,6 +5,8 @@ import common.ResponseSender;
 import common.Vehicle;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class VehicleAdder {
@@ -61,26 +63,30 @@ public class VehicleAdder {
         ValidateParams validator = new ValidateParams(args);
         GroupingField field = validator.getGroupingField();
 
-        // Фильтруем по searchValue
-        List<Vehicle> result = collection.getVehicles().stream()
-                .filter(v -> {
-                    Object fieldValue = field.extractor().apply(v);
-                    return fieldValue.equals(field.searchValue());
-                })
-                .toList();
-
-// Выводим
-        if (result.isEmpty()) {
+        Map<Comparable<?>, Long> grouped = collection.getVehicles().stream()
+                .collect(Collectors.groupingBy(
+                        field.extractor(),
+                        Collectors.counting()
+                ));
+        if (grouped.isEmpty()) {
             responseSender.send("Ничего не найдено");
-        } else {
-            responseSender.send("\nНайдено элементов: " + result.size());
-            responseSender.send("-------------------------------");
-            for (Vehicle v : result) {
-                Vehicle.printVehicle(v);
-            }
+            return;
         }
 
+        // 3. Формирование вывода
+        responseSender.send("Группировка по полю: " + field.fieldName());
+        responseSender.send("-------------------------------");
 
+        grouped.forEach((key, count) ->
+                responseSender.send(String.format("%s: %d объект(ов)",
+                        key != null ? key.toString() : "[не задано]",
+                        count))
+        );
 
+        long total = grouped.values().stream().mapToLong(Long::longValue).sum();
+        responseSender.send("-------------------------------");
+        responseSender.send("Всего сгруппировано: " + total);
     }
+
+
 }
